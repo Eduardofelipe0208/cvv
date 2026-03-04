@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyectos | Eduardo Marcano - Ingeniero de Sistemas</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Montserrat:wght@700;800;900&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Estilos específicos para la sección de proyectos */
+        .projects-hero {
+            padding: 160px 0 80px;
+            background: radial-gradient(circle at 10% 20%, rgba(245, 166, 35, 0.05) 0%, rgba(11, 12, 16, 1) 90%);
+        }
+
+        .projects-hero-content {
+            text-align: center;
+        }
+
+        .projects-hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .projects-hero-content p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+
+        /* Grid de Proyectos */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .project-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .project-card:hover {
+            border-color: var(--accent-amber);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(245, 166, 35, 0.15);
+        }
+
+        .project-image-wrapper {
+            width: 100%;
+            height: 220px;
+            background: linear-gradient(135deg, rgba(245, 166, 35, 0.1), rgba(197, 160, 89, 0.1));
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .project-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .project-card:hover .project-image-wrapper img {
+            transform: scale(1.05);
+        }
+
+        .project-image-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(245, 166, 35, 0.1), rgba(197, 160, 89, 0.1));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: var(--accent-amber);
+        }
+
+        .project-content {
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .project-category {
+            display: inline-block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--accent-amber);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            font-family: var(--font-heading);
+            color: var(--text-main);
+            margin-bottom: 12px;
+            font-weight: 800;
+        }
+
+        .project-description {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .project-tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .tech-tag {
+            display: inline-block;
+            padding: 6px 12px;
+            background: rgba(245, 166, 35, 0.1);
+            color: var(--accent-amber);
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            border: 1px solid rgba(245, 166, 35, 0.2);
+        }
+
+        .project-actions {
+            display: flex;
+            gap: 12px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .project-link {
+            flex: 1;
+            padding: 10px 16px;
+            background: var(--accent-amber);
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .project-link:hover {
+            background: var(--accent-amber-hover);
+            transform: translateY(-2px);
+        }
+
+        .project-link-secondary {
+            flex: 1;
+            padding: 10px 16px;
+            background: transparent;
+            color: var(--text-main);
+            text-align: center;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .project-link-secondary:hover {
+            border-color: var(--accent-amber);
+            color: var(--accent-amber);
+        }
+
+        /* Sección de CTA Final */
+        .projects-cta {
+            padding: 60px 0;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(245, 166, 35, 0.05), rgba(197, 160, 89, 0.05));
+        }
+
+        .projects-cta h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .projects-cta p {
+            color: var(--text-muted);
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .projects-hero {
+                padding: 100px 0 60px;
+            }
+
+            .projects-hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .project-actions {
+                flex-direction: column;
+            }
+
+            .project-link,
+            .project-link-secondary {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">Eduardo <span>Marcano.</span></a>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+
+            <nav class="nav-links" id="navLinks">
+                <a href="index.html">Inicio</a>
+                <a href="index.html#solucion">La Solución</a>
+                <a href="index.html#ingenieria">Ingeniería</a>
+                <a href="#proyectos">Proyectos</a>
+                <a href="index.html#contacto" class="btn btn-primary nav-btn">Agendar Consulta</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section de Proyectos -->
+    <section class="projects-hero" id="proyectos">
+        <div class="container">
+            <div class="projects-hero-content reveal">
+                <div class="badge">Portafolio de Proyectos</div>
+                <h1>Proyectos que generan resultados.</h1>
+                <p>Estos son algunos de los proyectos web que he desarrollado para empresas que buscaban soluciones robustas y escalables. Desde sitios corporativos hasta aplicaciones personalizadas.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Grid de Proyectos -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="projects-grid">
+                <!-- Proyecto 1 -->
+                <div class="project-card reveal">
+                    <div class="project-image-wrapper">
+                        <div class="project-image-placeholder">📊</div>
+                    </div>
+                    <div class="project-content">
+                        <span class="project-category">E-Commerce</span>
+                        <h3 class="project-title">Tienda Digital Premium</h3>
+                        <p class="project-description">Plataforma de e-commerce desarrollada en WordPress con WooCommerce, integraciones de pago, gestión de inventario avanzada y optimización SEO para posicionar en las primeras posiciones de búsqueda.</p>
+                        <div class="project-tech-tags">
+                            <span class="tech-tag">WordPress</span>
+                            <span class="tech-tag">PHP</span>
+                            <span class="tech-tag">MySQL</span>
+                            <span class="tech-tag">WooCommerce</span>
+                        </div>
+                        <div class="project-actions">
+                            <a href="#" class="project-link">Ver Proyecto →</a>
+                            <a href="#" class="project-link-secondary">Detalles</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Proyecto 2 -->
+                <div class="project-card reveal delay-1">
+                    <div class="project-image-wrapper">
+                        <div class="project-image-placeholder">🎯</div>
+                    </div>
+                    <div class="project-content">
+                        <span class="project-category">Sitio Corporativo</span>
+                        <h3 class="project-title">Web Corporativa B2B</h3>
+                        <p class="project-description">Solución web profesional para empresa de servicios B2B. Incluye sistema de gestión de contenidos, formularios dinámicos, integración con CRM y optimización de velocidad de carga.</p>
+                        <div class="project-tech-tags">
+                            <span class="tech-tag">PHP</span>
+                            <span class="tech-tag">MySQL</span>
+                            <span class="tech-tag">API REST</span>
+                            <span class="tech-tag">CSS3</span>
+                        </div>
+                        <div class="project-actions">
+                            <a href="#" class="project-link">Ver Proyecto →</a>
+                            <a href="#" class="project-link-secondary">Detalles</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Proyecto 3 -->
+                <div class="project-card reveal delay-2">
+                    <div class="project-image-wrapper">
+                        <div class="project-image-placeholder">🏢</div>
+                    </div>
+                    <div class="project-content">
+                        <span class="project-category">Aplicación Web</span>
+                        <h3 class="project-title">Dashboard de Analítica</h3>
+                        <p class="project-description">Aplicación web interactiva con panel de control para análisis de datos en tiempo real. Backend robusto con base de datos optimizada y frontend responsivo con visualización de datos avanzada.</p>
+                        <div class="project-tech-tags">
+                            <span class="tech-tag">PHP</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">MySQL</span>
+                            <span class="tech-tag">RESTful API</span>
+                        </div>
+                        <div class="project-actions">
+                            <a href="#" class="project-link">Ver Proyecto →</a>
+                            <a href="#" class="project-link-secondary">Detalles</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Proyecto 4 -->
+                <div class="project-card reveal">
+                    <div class="project-image-wrapper">
+                        <div class="project-image-placeholder">💼</div>
+                    </div>
+                    <div class="project-content">
+                        <span class="project-category">Portal SaaS</span>
+                        <h3 class="project-title">Plataforma SaaS Escalable</h3>
+                        <p class="project-description">Sistema multi-tenant construido desde cero con arquitectura escalable. Incluye autenticación segura, gestión de usuarios, suscripciones y panel administrativo completo.</p>
+                        <div class="project-tech-tags">
+                            <span class="tech-tag">PHP</span>
+                            <span class="tech-tag">MySQL</span>
+                            <span class="tech-tag">APIs</span>
+                            <span class="tech-tag">Seguridad</span>
+                        </div>
+                        <div class="project-actions">
+                            <a href="#" class="project-link">Ver Proyecto →</a>
+                            <a href="#" class="project-link-secondary">Detalles</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Proyecto 5 -->
+                <div class="project-card reveal delay-1">
+                    <div class="project-image-wrapper">
+                        <div class="project-image-placeholder">🚀</div>
+                    </div>
+                    <div class="project-content">
+                        <span class="project-category">WordPress Custom</span>
+                        <h3 class="project-title">Blog Corporativo Avanzado</h3>
+                        <p class="project-description">Sitio de contenidos con WordPress personalizado incluyendo temas custom, plugins a medida, SEO optimizado y sistema de generación de leads con autoresponder integrado.</p>
+                        <div class="project-tech-tags">
+                            <span class="tech-tag">WordPress</span>
+                            <span class="tech-tag">PHP</span>
+                            <span class="tech-tag">ACF</span>
+                            <span class="tech-tag">Elementor</span>
+                        </div>
+                        <div class="project-actions">
+                            <a href="#" class="project-link">Ver Proyecto →</a>
+                            <a href="#" class="project-link-secondary">Detalles</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Proyecto 6 -->
+                <div class="project-card reveal delay-2">
+                    <div class="project-image-wrapper">
+                        <div class="project-image-placeholder">⚡</div>
+                    </div>
+                    <div class="project-content">
+                        <span class="project-category">Migración & Optimización</span>
+                        <h3 class="project-title">Optimización de Performance</h3>
+                        <p class="project-description">Proyecto de mejora de infraestructura para sitio legacy. Incluye migración a servidor moderno, optimización de base de datos, caché avanzado y mejora de velocidad en un 300%.</p>
+                        <div class="project-tech-tags">
+                            <span class="tech-tag">Performance</span>
+                            <span class="tech-tag">DevOps</span>
+                            <span class="tech-tag">MySQL</span>
+                            <span class="tech-tag">Infraestructura</span>
+                        </div>
+                        <div class="project-actions">
+                            <a href="#" class="project-link">Ver Proyecto →</a>
+                            <a href="#" class="project-link-secondary">Detalles</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Final -->
+    <section class="projects-cta">
+        <div class="container">
+            <h2>¿Tu proyecto merece ingeniería de calidad?</h2>
+            <p>Si buscas transformar tu idea en una solución web robusta y escalable, hablemos.</p>
+            <a href="index.html#contacto" class="btn btn-primary">Agendar Consulta Gratuita</a>
+        </div>
+    </section>
+
+    <script src="js/app.js"></script>
+</body>
+
+</html>
